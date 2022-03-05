@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  api_nodejs:
+    container_name: containerapp
+    restart: always
+    build: .
+    ports:
+      - "3000:8080"
+    links:
+      - mongodb
+    volumes: 
+      - .:/usr/src/app
+  mongodb:
+    container_name: mongodbcontainer
+    image: mongo
+    ports:
+      - "27018:27017"
+    logging: 
+      driver: none
